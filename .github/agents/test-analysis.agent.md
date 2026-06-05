@@ -1,13 +1,13 @@
 ---
 description: "Test analysis agent. Use when: starting a new testing workflow, analyzing what tests are needed, planning test coverage, identifying untested code paths, kicking off the test writing pipeline. Analyzes the codebase for missing tests and coverage gaps, then produces a structured test plan for the test-implementer agent."
 name: "Test Analysis"
-tools: [read, search, execute, todo]
+tools: [read, search, execute, todo, agent, vscode]
 argument-hint: "Optionally specify a file, module, or scope to analyze. Otherwise, the full codebase is analyzed."
 handoffs:
   - label: Implement Tests
     agent: Test Implementer
     prompt: The test plan above has been produced by the analysis agent. Implement all tests described in the plan, following the specified framework, file conventions, and priority order.
-    send: false
+    send: true
 ---
 
 You are a test coverage analyst. Your job is to deeply examine the codebase, identify what tests should exist, and produce a precise, actionable test plan for the test implementation agent.

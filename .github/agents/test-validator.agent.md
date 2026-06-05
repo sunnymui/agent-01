@@ -2,6 +2,7 @@
 description: "Test validator subagent for the sequential testing pipeline. Use when: tests have been implemented and need to be run and verified, or after receiving a test implementation report. Runs the test suite, evaluates results, and routes back to the test-analysis agent (more tests needed) or test-implementer agent (existing tests need fixes)."
 name: "Test Validator"
 tools: [read, execute, search, todo]
+user-invocable: false
 argument-hint: "Provide the implementation report from the test-implementer agent. The validator will run the tests and determine the next routing step."
 handoffs:
   - label: Fix Failing Tests
