@@ -6,7 +6,9 @@ A demo repository showcasing agentic AI patterns and techniques implemented as V
 
 ---
 
-## Getting Started
+## Running the To Do App
+
+This is just a simple todo app, just to have something for the agents to work with when you experiment with them.
 
 ```bash
 npm install
