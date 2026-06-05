@@ -90,6 +90,33 @@ Creates a hierarchical `AGENTS.md` infrastructure across your codebase as a **co
 
 ---
 
+## Applying These Patterns: Agent Harness Engineering
+
+The patterns in this repo aren't just about prompting — they're building blocks for an **agent harness**: the layer of tooling and practices that sits around an AI model and shapes how it behaves.
+
+This is why you can get meaningfully different results from the same underlying model (say, Claude Sonnet) depending on whether you're using Claude Code, VS Code Copilot, OpenCode, or Cursor. The model weights are identical. What differs is the harness — the system prompt, the tools exposed, the feedback loops, the constraints, and the context engineering layered on top.
+
+A well-designed harness has four responsibilities:
+
+| Responsibility | What it means | Examples from this repo |
+|----------------|--------------|------------------------|
+| **Constrain** | Limit what the agent can do | Agent tool declarations (`tools: [read, search]`), VS Code agent mode boundaries |
+| **Inform** | Give the agent the right context to act well | `intent-layer` skill (hierarchical AGENTS.md), `write-readme` progressive disclosure, `AGENTS.md` at root |
+| **Verify** | Check that the agent did it correctly | `Test Validator` agent, CI linting, the critique phase in reflection agents |
+| **Correct** | Feed failures back to improve future behavior | `self-improve` skill (appends lessons to AGENTS.md), reflection loops (self-critique → revision) |
+
+The patterns here map directly onto harness engineering:
+
+- **Reflection agents** implement the Verify + Correct cycle within a single response — the agent critiques its own output and self-corrects before you ever see it.
+- **ReAct** implements a grounded Inform loop — the agent must observe real tool output before acting, preventing hallucinated reasoning.
+- **Orchestrator / decomposition agents** implement Constrain — each subagent only sees and does what it's scoped to.
+- **Sequential / handoff agents** (test pipeline) implement Verify + Correct across agents — the validator can route back to the implementer when tests fail.
+- **`intent-layer`** and **`self-improve`** are persistent Inform and Correct mechanisms that improve the harness itself over time.
+
+The takeaway: the patterns here aren't exotic. They're ways of systematically building the four harness properties into your agent workflows — whether that's a single-agent chat loop or a multi-agent pipeline.
+
+---
+
 ## Pattern Reference
 
 | Pattern | Where it's demonstrated |
